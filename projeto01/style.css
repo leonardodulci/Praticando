@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+body{
+    background-color: rgba(0, 0, 255, 0.479);
+
+}
+header{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+section{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: auto;
+    text-align: center;
+    padding: 30px;
+    background-color: white;
+    width: 200px;
+    border-radius: 5px;
+    box-shadow: 1px 5px 10px black;
+
+}
+input{
+    text-align: center;
+    border: solid 2px black;
+}
+
+#ires{
+    font-family: Arial, Helvetica, sans-serif;
+}
