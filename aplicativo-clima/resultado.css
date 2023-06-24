@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+body{
+   
+    background-color: rgb(113, 195, 216);
+}
+
+.res{
+    width: 400px;
+    height: 300px;
+    background-color: white;
+    margin: auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px black;
+}
+.res > h1{
+    padding: 15px;
+}
+#btnc-voltar{
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#resultados{
+    margin-left: 50px;
+}

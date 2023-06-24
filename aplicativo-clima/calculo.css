@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+body{
+    background-color: rgb(113, 195, 216);;
+}
+#map{
+    width: 98vw;
+    height: 400px;
+    margin-bottom: 10px;
+    box-shadow: 5px 5px 20px black;
+}
+
+.inicio{
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px black;
+    margin: auto;
+    display: block;
+    width: 350px;
+    height: 340px;
+    background-color: white;
+    text-align: center;
+}
+   #form   #button{
+   background-color: blue;
+   color: white;
+   border: none;
+   padding: 10px 20px;
+   border-radius: 5px;
+   cursor: pointer;
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="calculo.css">
+   
+    <title>Calcule sua viagem</title>
+</head>
+<body>
+   <div id="map"></div>
+   <div class="inicio">
+       <h1>Gestão de Transporte</h1>
+        <form id="form">
+            <label for="origem">Origem:</label><br>
+            <input type="text" name="ori" id="origem" placeholder="Primeiro clique no mapa">
+            <br><br>
+            <label for="destino">Destino:</label><br>
+            <input type="text" name="dest" id="destino" placeholder="Segundo clique no mapa"> 
+            <br><br>
+            <label for="consumo">Média de consumo de combustível (km/l):</label>
+            <input type="number" name="cons" id="consumo" step="any" placeholder="Quanto por litro?">
+            <br><br>
+            <label for="preco">Preço do combustível (R$/l)</label>
+            <input type="number" name="combs" id="preco" step="any" placeholder="Tá pagando quanto?">
+            <br><br>
+            <input type="button" value="Calcular" id="button" onclick="calcular()">
+        </form>
+   </div>
+
+    <div id="resultado"></div>
+
+    <script src= "https://maps.googleapis.com/maps/api/js?key=AIzaSyDNRNmC7NU17wjYmiGjwkovG679N1R7qTw&callback=initMap"></script>
+
+        <script>
+            var origemMarker = null;
+            var destinoMarker = null;
+            var map = new google.maps.Map(document.getElementById("map"), {
+                center: {lat: -15.807544776784953, lng: -48.073221347193254}, 
+                zoom: 12,
+            })
+
+            var directionsRenderer = new google.maps.DirectionsRenderer({
+                map: map
+            })
+
+            map.addListener("click", function(event) {
+                if (origemMarker == null) {
+                    origemMarker = new google.maps.Marker({
+                        position: event.latLng,
+                        map: map,
+                    });
+                    document.getElementById("origem").value = 
+                        event.latLng.lat() + ", " + event.latLng.lng();
+                } else if (destinoMarker == null){
+                    destinoMarker = new google.maps.Marker({
+                        position: event.latLng,
+                        map: map,
+                    });
+                        document.getElementById("destino").value = event.latLng.lat() + ", " + event.latLng.lng();
+
+                        var directionsService = new google.maps.DirectionsService();
+                        var request = {
+
+                            origin: document.getElementById("origem").value,
+                            destination: document.getElementById("destino").value,
+                            travelMode: "DRIVING",
+                        };
+
+                        directionsService.route(request, function(result, status){
+                            if (status == "OK"){
+                                directionsRenderer.setDirections(result)
+                            } else {
+                                alert("Não foi possível calcular a rota")
+                            }
+                        })
+                } else {
+                    origemMarker.setMap(null);
+                    destinoMarker.setMap(null);
+                    origemMarker = new google.maps.Marker({
+                        position: event.latLng,
+                        map: map,
+                    });
+
+                    destinoMarker = null;
+                    document.getElementById("origem").value = 
+                        event.latLng.lat() + ", " + event.latLng.lng();
+                    document.getElementById("destino").value = "";
+                    directionsRenderer.set("directions", null);
+                }
+            });
+
+            function calcular(){
+                var origem = document.getElementById("origem").value;
+                var destino = document.getElementById("destino").value;
+                var consumo = document.getElementById("consumo").value;
+                var preco = document.getElementById("preco").value;
+
+                if (origem == "" || destino == "" || consumo == "" || preco == ""){
+                    alert("Por favor, preencha todos os campos.");
+                } else {
+                    var directionsService = new google.maps.DirectionsService()
+                    var  request = {
+                        origin: origem,
+                        destination: destino,
+                        travelMode: "DRIVING",
+                    };
+
+                    directionsService.route(request, function(result, status){
+                        if (status == "OK"){
+                            directionsRenderer.setDirections(result)
+
+                            var distancia = result.routes[0].legs[0].distance.value / 1000
+                            var consumocombustivel = distancia / consumo
+                            var valorCombustivel = consumocombustivel * preco
+
+                            //abrir nova janela com resultados
+                            var url = "resultado.html"
+                            url += "?distancia=" + distancia.toFixed(2)
+                            url += "&consumo=" + consumocombustivel.toFixed(2)
+                            url += "&valor=" + valorCombustivel.toFixed(2)
+                            window.open(url, "_blank")
+                        } else {
+                            alert("não foi possível calcular a rota.");
+                        }
+                    });
+                }
+            }
+        </script>
+</body>
+</html>

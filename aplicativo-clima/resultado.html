@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado</title>
+     <link rel="stylesheet" href="resultado.css">
+</head>
+<body>
+    <div class="res">
+        
+        <h1>Resultados do calculo do transporte</h1>
+        <div id="resultados">
+            <p>Distância percorrida: <span style=" font-weight: bold; color: black;" id="distancia"></span> km</p>
+            <p>Consumo de combustível: <span style=" font-weight: bold; color: black;" id="consumo"></span> Litros</p>
+            <p>Valor gasto com combustível: R$<span style=" font-weight: bold; color: black;" id="valor"></span></p>
+            <button type="button" onclick="window.location.href='calculo.html'" id="btnc-voltar">Voltar</button>
+        </div>
+        <script>
+            //obter parametros da url
+            var urlParams = new URLSearchParams(window.location.search);
+            //exibir resultados da pagina
+            document.getElementById("distancia").textContent = urlParams.get("distancia");
+            document.getElementById("consumo").textContent = urlParams.get("consumo");
+            document.getElementById("valor").textContent = urlParams.get("valor");
+        </script>
+    </div>
+</body>
+</html>
