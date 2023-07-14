@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Agdasima&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+header{
+    padding: 25px;
+    background-color: rgba(128, 128, 128, 0.808);
+}
+header > h1{
+    font-family: 'Agdasima';
+    font-size: 4em;
+    line-height: 20px;
+
+}
