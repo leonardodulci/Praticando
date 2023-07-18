@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+@media screen and (min-width:0px) and (max-width:600px) {
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+header{
+    background-color: black;
+    color: white;
+    padding: 40px;
+    text-align: center;
+ 
+}
+header > h1{
+    font-family: 'Pacifico';
+    font-size: 3em;
+    margin-top: -36px;
+    
+    
+}
+header > p{
+
+}
+
+header > nav{
+    color: white;
+    text-decoration: none;
+
+}
+#loc > iframe{
+    width: 95vw;
+    scrollbar-width: 0px;
+}
+}
