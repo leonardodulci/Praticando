@@ -222,7 +222,7 @@ section {
 }
 .text4 > img{
     border-radius: 10px;
-    width: 100%;
+    width: 30%;
 }
 /* ===== MAPA ===== */
 .iframe {
@@ -342,6 +342,12 @@ section {
   .iframe iframe {
     height: 300px;
   }
+  
+  .text4 > img {
+    border-radius: 10px;
+    width: 60%;
+}
+
 }
 
 /* Celulares */
@@ -398,4 +404,9 @@ section {
   .text4 , .text3 > img{
     width: 100%;
   }
+   .text4 > img {
+    border-radius: 10px;
+    width: 60%;
+}
+
 }
